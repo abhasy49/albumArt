@@ -57,8 +57,8 @@ $releaseDate = $_POST["rd"];
 $tracknumber = $_POST["track_nr"];
 
 
-$sql = "INSERT INTO album (firstname, lastname, email)
-VALUES ('John', 'Doe', 'john@example.com')";
+$sql = "INSERT INTO album (title, release_date, track_nr)
+VALUES ($title, $releaseDate, $tracknumber)";
 
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";

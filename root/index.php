@@ -57,11 +57,11 @@ $dob = $_POST["dob"];
 $group = $_POST["group"];
 
 
-$sql = "INSERT INTO album (firstname, lastname, email)
-VALUES ('John', 'Doe', 'john@example.com')";
+$sql = "INSERT INTO artiste (name,dob,music_group)
+VALUES ($name, $dob, $group)";
 
 if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
+    echo "New artiste created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }

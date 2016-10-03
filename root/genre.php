@@ -56,11 +56,11 @@ include("connect.php")
 $genre = $_POST["genre"];
 
 
-$sql = "INSERT INTO album (firstname, lastname, email)
-VALUES ('John', 'Doe', 'john@example.com')";
+$sql = "INSERT INTO album (genre)
+VALUES ($genre)";
 
 if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
+    echo "New genre added successfully";
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }

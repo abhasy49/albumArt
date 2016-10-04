@@ -24,16 +24,17 @@ include("connect.php")
 		 <li><a href="index.php">Artiste</a></li>
 		 <li><a href="genre.php">Genre</a></li>
 		  <li><a href="song.php">Songs</a></li>
+                  <li><a href="view.php">View</a></li>
 		 <div style="clear:both;"></div>
 		</ul>
        </nav>
 	
 	<main>
-	  <form action="index.php">
+	  <form action="song.php">
                <table>
                <tr>
 		  <td><label for="title">Title</label></td>
-		<td> <input type="text" required name="title" id="title"  placeholder="title"  ></td>
+		<td> <input type="text" required name="title" id="title"  placeholder="Title"  ></td>
 		 <tr>
                  <tr>
 		 <td><label for="dob">Release Date</label></td>
@@ -41,7 +42,7 @@ include("connect.php")
                 </tr>
                 <tr>
 		 <td><label for="group">Track Number</label></td>
-		 <td> <input type="text" name="track_nr" id="track_nr"  placeholder="track number" required></td>
+		 <td> <input type="text" name="track_nr" id="track_nr"  placeholder="Track number" required></td>
                 </tr>
                 <tr>
                  <td></td>
@@ -52,20 +53,34 @@ include("connect.php")
 	</main>
 	<footer>Designed Hassan</footer>
 <?php
-$title = $_POST["title"];
-$releaseDate = $_POST["rd"];
-$tracknumber = $_POST["track_nr"];
+/*
+Attempt MySQL server connection. Assuming you are running MySQL
+server with default setting (user 'root' with no password)
+*/
+$link = mysqli_connect("localhost", "root", "pass", "album");
+ 
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+ 
+// Escape user inputs for security
+$id = mysqli_real_escape_string($link, $_POST['id']);
+$title  = mysqli_real_escape_string($link, $_POST['title']);
+$releaseDate = mysqli_real_escape_string($link, $_POST['rd']);
+$trackNr = mysqli_real_escape_string($link, $_POST['track_nr']);
+// attempt insert query execution
 
+$sql = "INSERT INTO song (id,title,release_date,track_nr) VALUES ('$id', '$title','$releaseDate','$trackNr')";
 
-$sql = "INSERT INTO album (title, release_date, track_nr)
-VALUES ($title, $releaseDate, $tracknumber)";
-
-if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+if(mysqli_query($link, $sql)){
+    echo "Records added successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }
 
+// close connection
+mysqli_close($link);
 ?>
 </div>
 </body>

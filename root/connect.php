@@ -1,17 +1,12 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "pass";
-$dbname = "album";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+/*
+Attempt MySQL server connection. Assuming you are running MySQL
+server with default setting (user 'root' with no password)
+*/
+$link = mysqli_connect("localhost", "root", "pass", "album");
+ 
 // Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-
-
-
-mysqli_close($conn);
 ?>

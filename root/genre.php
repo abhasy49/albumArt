@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-include("connect.php")
+//include("connect.php")
  ?>
 
 
@@ -24,16 +24,18 @@ include("connect.php")
 		 <li><a href="index.php">Artiste</a></li>
 		 <li><a href="genre.php">Genre</a></li>
 		  <li><a href="song.php">Songs</a></li>
+                  <li><a href="view.php">View</a></li>
 		 <div style="clear:both;"></div>
 		</ul>
        </nav>
 	
 	<main>
-	  <form action="index.php">
+
+	  <form action="genre.php">
                <table>
                <tr>
 		                         <td>Genre</td>
-					 <td><input list="genre"></td>
+					 <td><input list="genre" id="genre" name="genre"></td>
 					 <datalist id="genre">
 							<option>Blues</option>
 							<option>Ragae</option>
@@ -45,27 +47,33 @@ include("connect.php")
                   </tr>
                   <tr>
                  <td></td>
-                 <td><input type="submit" value="Insert Genre"></td>
+                 <td><input type="submit"  value="Insert Genre" id="submit" name="submit"></td>
                   </tr>
               </table>
-
+		<?php
+		
+		 
+		// Escape user inputs for security
+		$id = mysqli_real_escape_string($link, $_POST['id']);
+		$genre = mysqli_real_escape_string($link, $_POST['genre']);
+		
+		 
+		// attempt insert query execution
+		
+		$sql = "INSERT INTO genre (id,genre) VALUES ('$id','$genre')";
+		if(mysqli_query($link, $sql)){
+			echo "Records added successfully.";
+		} else{
+			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+		}
+		
+		// close connection
+		mysqli_close($link);
+		?>
           </form>
 	</main>
 	<footer>Designed Hassan</footer>
-<?php
-$genre = $_POST["genre"];
-
-
-$sql = "INSERT INTO album (genre)
-VALUES ($genre)";
-
-if (mysqli_query($conn, $sql)) {
-    echo "New genre added successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-
-?>
+	
 </div>
 </body>
 </html>

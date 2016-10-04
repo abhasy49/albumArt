@@ -64,7 +64,7 @@ include("connect.php")
 		if(mysqli_query($link, $sql)){
 			echo "Records added successfully.";
 		} else{
-			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+			echo "ERROR: Could not  execute $sql. " . mysqli_error($link);
 		}
 		
 		// close connection

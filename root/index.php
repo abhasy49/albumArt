@@ -62,7 +62,7 @@ $sql = "INSERT INTO artiste (id, name, DOB,music_group) VALUES ('$id', '$name', 
 if(mysqli_query($link, $sql)){
     echo "Records added successfully.";
 } else{
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+    echo "ERROR: Could not to execute $sql. " . mysqli_error($link);
 }
  
 // close connection

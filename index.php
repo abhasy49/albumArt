@@ -25,7 +25,7 @@
 		 <td><input type="text" name="l_name" id="l_name"  placeholder="Last Name" required><td>
                 </tr>
                  <tr>
-		 <td><label for="DOB">Music Group</label></td>
+		 <td><label for="DOB">Date of Birth</label></td>
 		 <td> <input type="text" name="dob" id="dob"  placeholder="Date of Birth" required></td>
                 </tr>
                 <tr>
@@ -52,7 +52,7 @@ if($link === false){
     $dob = mysqli_real_escape_string($link, $_POST['dob']);
 
 // attempt insert query execution
-    $sql = "INSERT INTO artiste (id, f_name, l_name,dob) VALUES ('$id', '$fname', '$lname','$dob')";
+    $sql = "INSERT INTO artiste (id,f_name,l_name,dob) VALUES ('$id', '$fname', '$lname','$dob')";
 
 if(mysqli_query($link, $sql)){
     echo "Records added successfully.";

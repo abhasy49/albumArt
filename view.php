@@ -26,7 +26,7 @@ if (!$link) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT a.name,s.title,g.genre FROM artiste a  JOIN song s ON a.id= s.id  JOIN genre g ON s.id=g.id limit 5 ";
+$sql = "SELECT a.f_name,a.l_name,s.title,g.genre FROM artiste a  JOIN song s ON a.id= s.id  JOIN genre g ON s.id=g.id limit 5 ";
 $result = mysqli_query($link, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -37,7 +37,7 @@ if (mysqli_num_rows($result) > 0) {
 	<th>Name</th>
 	<th>Title</th>
 	<th>Genre</th>
-	<th>Actions</th>	
+	<th>Actions</th>
 		</tr>";
 
 // start a table tag in the HTML

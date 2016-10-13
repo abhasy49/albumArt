@@ -25,8 +25,8 @@ include("connect.php")
 							<option>Ragae</option>
 							<option>R&B</option>
 							<option>Jazz</option>
-                                                        <option>Rap</option>
-                                                        <option>Country</option>
+                            <option>Rap</option>
+                            <option>Country</option>
 				   	 </datalist>
                   </tr>
                   <tr>
@@ -39,29 +39,31 @@ include("connect.php")
 		 /*
           Attempt MySQL server connection.
          */
-		$link = mysqli_connect("localhost", "root", "pass", "album");
+		if (isset($_POST['submit'])) {
+			$link = mysqli_connect("localhost", "root", "pass", "album");
 
-		// Check connection
-        
-		if($link === false){
-			die("ERROR: Could not connect. " . mysqli_connect_error());
-		}
+			// Check connection
 
-		// Escape user inputs for security
-		$id = mysqli_real_escape_string($link, $_POST['id']);
-		$genre = mysqli_real_escape_string($link, $_POST['genre']);
-		
-		 
-		// attempt insert query execution
 
-            $sql = "INSERT INTO genre (id, genre) VALUES ('$id','$genre')";
+			if ($link === false) {
+				die("ERROR: Could not connect. " . mysqli_connect_error());
+			}
 
-		if(mysqli_query($link, $sql)){
-			echo "Records added successfully.";
-		} else{
-			echo "ERROR: Could not execute $sql. " . mysqli_error($link);
-		}
+			// Escape user inputs for security
+			$id = mysqli_real_escape_string($link, $_POST['id']);
+			$genre = mysqli_real_escape_string($link, $_POST['genre']);
 
+
+			// attempt insert query execution
+
+			$sql = "INSERT INTO genre (id, genre) VALUES ('$id','$genre')";
+
+			if (mysqli_query($link, $sql)) {
+				echo "Records added successfully.";
+			} else {
+				echo "ERROR: Could not execute $sql. " . mysqli_error($link);
+			}
+	        	}
 		// close connection
 		mysqli_close($link);
 		?>

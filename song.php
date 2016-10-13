@@ -46,7 +46,7 @@ if($link === false){
      $trackNr = mysqli_real_escape_string($link, $_POST['track_nr']);
 
 // attempt insert query execution
-     $sql = "INSERT INTO song (id, title, release_date,track_nr) VALUES ('$id', '$title', '$releaseDate','$trackNr')";
+     $sql = "INSERT INTO song (id, title, release_date) VALUES ('$id', '$title', '$releaseDate')";
 
 
      if (mysqli_query($link, $sql)) {

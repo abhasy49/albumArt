@@ -17,16 +17,16 @@
 	  <form action="index.php" method="POST">
                <table>
                <tr>
-		  <td><label for="name">Name</label></td>
-		<td> <input type="text" required name="name" id="name"  placeholder="name"  ></td>
+		  <td><label for="f_name">First Name</label></td>
+		<td> <input type="text" required name="f_name" id="f_name"  placeholder="First Name"  ></td>
 		 <tr>
                  <tr>
-		 <td><label for="dob">Date of Birth</label></td>
-		 <td><input type="text" name="dob" id="dob"  placeholder="Date of Birth" required><td>
+		 <td><label for="S_name">Last Name</label></td>
+		 <td><input type="text" name="l_name" id="l_name"  placeholder="Last Name" required><td>
                 </tr>
-                <tr>
-		 <td><label for="group">Music Group</label></td>
-		 <td> <input type="text" name="music_group" id="music_group"  placeholder="Music Group" required></td>
+                 <tr>
+		 <td><label for="DOB">Music Group</label></td>
+		 <td> <input type="text" name="dob" id="dob"  placeholder="Date of Birth" required></td>
                 </tr>
                 <tr>
                  <td></td>
@@ -47,12 +47,12 @@ if($link === false){
 
 // Escape user inputs for security
     $id = mysqli_real_escape_string($link, $_POST['']);
-    $name = mysqli_real_escape_string($link, $_POST['name']);
+    $fname = mysqli_real_escape_string($link, $_POST['f_name']);
+    $lname = mysqli_real_escape_string($link, $_POST['l_name']);
     $dob = mysqli_real_escape_string($link, $_POST['dob']);
-    $music = mysqli_real_escape_string($link, $_POST['music_group']);
 
 // attempt insert query execution
-    $sql = "INSERT INTO artiste (id, name, DOB,music_group) VALUES ('$id', '$name', '$dob','$music')";
+    $sql = "INSERT INTO artiste (id, f_name, l_name,dob) VALUES ('$id', '$fname', '$lname','$dob')";
 
 if(mysqli_query($link, $sql)){
     echo "Records added successfully.";

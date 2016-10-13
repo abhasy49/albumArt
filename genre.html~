@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Qalbum</title>
+<link rel="stylesheet" href="css/albumcss.css">
+</head>
+<body>
+<div id="container">
+	<header>
+	        <div id="head1">
+		<img src="img/albm.jpeg" alt="logo">
+		</div>
+	        <div id="head">
+		<h3>Q-album</h3>
+	        </div>
+        </header>
+        <nav>
+		<ul>
+		 <li><a href="index.html">Artiste</a></li>
+		 <li><a href="genre.html">Genre</a></li>
+		  <li><a href="song.html">Songs</a></li>
+		 <div style="clear:both;"></div>
+		</ul>
+       </nav>
+	<?php
+$servername = "localhost";
+$username = "root";
+$password = "pass";
+$dbname = "album";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$sql = "INSERT INTO album (firstname, lastname, email)
+VALUES ('John', 'Doe', 'john@example.com')";
+
+if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+
+mysqli_close($conn);
+?>
+	<main>
+	  <form action="index.php">
+               <table>
+               <tr>
+		                         <td>Genre</td>
+					 <td><input list="list_genre"></td>
+					 <datalist id="list_genre">
+							<option>Blues</option>
+							<option>Ragae</option>
+							<option>R&B</option>
+							<option>Jazz</option>
+                                                        <option>Rap</option>
+                                                        <option>Country</option>
+				   	 </datalist>
+                  </tr>
+                <tr>
+                 <td></td>
+                 <td><input type="submit" value="Insert Song"></td>
+                </tr>
+</table>
+
+          </form>
+	</main>
+	<footer>Designed Hassan</footer>
+</div>
+</body>
+</html>
+
+

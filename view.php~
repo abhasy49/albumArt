@@ -1,0 +1,70 @@
+<?php 
+//include("connect.php")
+ ?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Qalbum</title>
+<link rel="stylesheet" href="css/albumcss.css">
+</head>
+<body>
+<div id="container">
+	<header>
+	        <div id="head1">
+		<img src="img/albm.jpeg" alt="logo">
+		</div>
+	        <div id="head">
+		<h3>Q-album</h3>
+	        </div>
+        </header>
+        <nav>
+		<ul>
+		 <li><a href="index.php">Artiste</a></li>
+		 <li><a href="genre.php">Genre</a></li>
+		  <li><a href="song.php">Songs</a></li>
+                  <li><a href="view.php">View</a></li>
+		 <div style="clear:both;"></div>
+		</ul>
+       </nav>
+	
+	<main>
+	  
+<?php
+/*
+Attempt MySQL server connection. Assuming you are running MySQL
+server with default setting (user 'root' with no password)
+*/
+$link = mysqli_connect("localhost", "root", "pass", "album");
+ 
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+ 
+// Escape user inputs for security
+$id = mysqli_real_escape_string($link, $_POST['']);
+$name = mysqli_real_escape_string($link, $_POST['name']);
+$dob = mysqli_real_escape_string($link, $_POST['dob']);
+$group = mysqli_real_escape_string($link, $_POST['music_group']);
+ 
+// attempt insert query execution
+$sql = "INSERT INTO artiste (id, name, DOB,music_group) VALUES ('$id', '$name', '$dob','$group')";
+if(mysqli_query($link, $sql)){
+    echo "Records added successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}
+ 
+// close connection
+mysqli_close($link);
+?>
+	</main>
+	<footer>Designed Hassan</footer>
+
+</div>
+</body>
+</html>
+
+

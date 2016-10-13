@@ -21,10 +21,6 @@
 		 <td><input type="text" name="rd" id="rd"  placeholder="Release Date" required><td>
                 </tr>
                 <tr>
-		 <td><label for="group">Track Number</label></td>
-		 <td> <input type="text" name="track_nr" id="track_nr"  placeholder="Track number" required></td>
-                </tr>
-                <tr>
                  <td></td>
                  <td><input type="submit" value="Insert Song" name="add"></td>
                 </tr>

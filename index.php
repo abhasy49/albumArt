@@ -7,6 +7,15 @@
 <head>
 <title>Qalbum</title>
 <link rel="stylesheet" href="css/albumcss.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+        </script>
 </head>
 <body>
 
@@ -26,13 +35,14 @@
                 </tr>
                  <tr>
 		 <td><label for="DOB">Date of Birth</label></td>
-		 <td> <input type="text" name="dob" id="dob"  placeholder="Date of Birth" required></td>
+		 <td> <input type="text" name="dob" id="datepicker"  placeholder="Date of Birth" required></td>
                 </tr>
                 <tr>
                  <td></td>
                  <td><input type="submit"  name="add" value="Insert track"></td>
                 </tr>
 		</table>
+
 <?php
 /*
 Attempt MySQL server connection.
@@ -46,6 +56,7 @@ if($link === false){
 }
 
 // Escape user inputs for security
+
     $id = mysqli_real_escape_string($link, $_POST['']);
     $fname = mysqli_real_escape_string($link, $_POST['f_name']);
     $lname = mysqli_real_escape_string($link, $_POST['l_name']);
@@ -69,6 +80,7 @@ mysqli_close($link);}
 
 </div>
 </body>
+
 </html>
 
 

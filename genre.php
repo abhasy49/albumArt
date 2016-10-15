@@ -35,7 +35,7 @@ include("connect.php")
                   </tr>
               </table>
 		<?php
-
+         session_start();
 		 /*
           Attempt MySQL server connection.
          */
@@ -53,10 +53,16 @@ include("connect.php")
 			$id = mysqli_real_escape_string($link, $_POST['id']);
 			$genre = mysqli_real_escape_string($link, $_POST['genre']);
 
+            //Declaring session variable
+
+            $_SESSION['id'] = $id;
+            $_SESSION['genre'] = $genre;
 
 			// attempt insert query execution
 
 			$sql = "INSERT INTO genre (id, genre) VALUES ('$id','$genre')";
+
+
 
 			if (mysqli_query($link, $sql)) {
 				echo "Records added successfully.";

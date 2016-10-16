@@ -3,13 +3,13 @@
  ?>
 
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 <title>Qalbum</title>
 <link rel="stylesheet" href="css/albumcss.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jindexquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $( function() {
@@ -39,15 +39,17 @@
                 </tr>
                 <tr>
                  <td></td>
-                 <td><input type="submit"  name="add" value="Insert track"></td>
+                 <td><button name="next" >save</button></td> <a href="genre.php">Next</a>
                 </tr>
 		</table>
 
 <?php
+ session_start();
+//include('insert.php');
 /*
 Attempt MySQL server connection.
 */
-if (isset($_POST['add'])){
+if (isset($_POST['next'])){
 $link = mysqli_connect("localhost", "root", "pass", "album");
 
 // Check connection
@@ -57,20 +59,28 @@ if($link === false){
 
 // Escape user inputs for security
 
-    $id = mysqli_real_escape_string($link, $_POST['']);
-    $fname = mysqli_real_escape_string($link, $_POST['f_name']);
-    $lname = mysqli_real_escape_string($link, $_POST['l_name']);
+    //$id = mysqli_real_escape_string($link, $_POST['']);
+    $f_name = mysqli_real_escape_string($link, $_POST['f_name']);
+    $l_name = mysqli_real_escape_string($link, $_POST['l_name']);
     $dob = mysqli_real_escape_string($link, $_POST['dob']);
 
+    //Declaring session variables
+
+    $_SESSION['id'] = $id;
+    $_SESSION['f_name'] = $f_name;
+    $_SESSION['l_name'] = $l_name;
+    $_SESSION['dob'] = $dob;
+
+
 // attempt insert query execution
-    $sql = "INSERT INTO artiste (id,f_name,l_name,dob) VALUES ('$id', '$fname', '$lname','$dob')";
+  /*  $sql = "INSERT INTO artiste (id,f_name,l_name,dob) VALUES ('$id', '$fname', '$lname','$dob')";
 
 if(mysqli_query($link, $sql)){
     echo "Records added successfully.";
 } else{
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }
- 
+*/
 // close connection
 mysqli_close($link);}
 ?>

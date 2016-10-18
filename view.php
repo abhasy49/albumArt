@@ -6,9 +6,23 @@
 </head>
 <body>
 <div id="container">
-    <?php include('header.php');?>
-	
+    <header>
+        <div id="head1">
+            <img src="img/albm.jpeg" alt="logo">
+        </div>
+        <div id="head">
+            <h3>Q-album</h3>
+        </div>
+    </header>
+    <nav>
+        <ul>
+
+
+
+        </ul>
+    </nav>
 	<main>
+        <div id="resultset">
 
 <?php
 
@@ -26,7 +40,7 @@ if (!$link) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT a.f_name,a.l_name,s.title,g.genre FROM artiste a  JOIN song s ON a.id= s.id  JOIN genre g ON s.id=g.id limit 5 ";
+$sql = "SELECT  *  FROM artiste";
 $result = mysqli_query($link, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -37,7 +51,8 @@ if (mysqli_num_rows($result) > 0) {
 	<th>Name</th>
 	<th>Title</th>
 	<th>Genre</th>
-	<th>Actions</th>
+	<th>Photo</th>
+	<th>Action</th>
 		</tr>";
 
 // start a table tag in the HTML
@@ -45,9 +60,10 @@ if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result)) {   //Creates a loop to loop through results
 
             echo "<tr>";
-            echo "<td>" . $row['name'] . "</td>";
-            echo "<td>" . $row['title'] . "</td>";
-            echo "<td>" . $row['genre'] . "</td>";
+            echo "<td>" . $row['l_name'] . "</td>";
+            echo "<td>" . $row['f_name'] . "</td>";
+            echo "<td>" . $row['dob'] . "</td>";
+            echo "<td>" . $row['image'] . "</td>";
             echo '<td width=250>';
             echo '<a class="btn btn-success" href="update.php?id='.$row['id'].'">Update</a>';
             echo '&nbsp;';
@@ -63,9 +79,9 @@ if (mysqli_num_rows($result) > 0) {
 
 mysqli_close($link);
 ?>
-
+ </div>
 	</main>
-
+    <a href="index.php"><img src="img/hom.jpeg" alt="next page"></a>
     <?php include ('footer.php') ?>
 
 </div>
